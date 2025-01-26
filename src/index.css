@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 0.75rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-gradient-to-br from-red-600 via-black to-red-600 min-h-screen text-foreground;
+  }
+}
+
+.glass-card {
+  @apply bg-black/30 backdrop-blur-md border border-white/20 shadow-xl;
+}
+
+.glass-card-hover {
+  @apply transition-all duration-300 hover:bg-black/40 hover:border-white/30;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+.slide-up {
+  animation: slideUp 0.5s ease-out;
+}
+
+.hover-scale {
+  @apply transition-all duration-300 hover:scale-105;
+}
+
+.glow {
+  @apply relative;
+}
+
+.glow::after {
+  content: '';
+  @apply absolute inset-0 rounded-lg opacity-0 transition-opacity duration-300;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, transparent 70%);
+}
+
+.glow:hover::after {
+  @apply opacity-100;
+}
+
+.button-shine {
+  @apply relative overflow-hidden;
+}
+
+.button-shine::after {
+  content: '';
+  @apply absolute top-0 left-[-100%] w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent transform;
+  animation: shine 2s infinite;
+}
+
+@keyframes shine {
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.admin-panel {
+  @apply bg-gradient-to-br from-red-900/50 via-black/50 to-red-900/50;
+}
+
+.admin-card {
+  @apply glass-card glass-card-hover p-6 rounded-xl space-y-4;
+}
+
+.admin-input {
+  @apply bg-black/20 border border-white/20 text-white placeholder-white/50 rounded-lg px-4 py-2 w-full focus:outline-none focus:border-white/40 transition-all;
+}
+
+.admin-button {
+  @apply button-shine bg-gradient-to-r from-red-700 to-red-600 text-white px-6 py-2 rounded-lg hover:from-red-600 hover:to-red-500 transition-all duration-300 font-medium;
+}
+
+.admin-label {
+  @apply text-white/90 font-medium mb-1 block;
+}
